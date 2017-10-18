@@ -1,0 +1,26 @@
+{
+  "name": "wheregroup/SymfonyMultiEncoderLDAPProvider",
+  "type": "library",
+  "description": "Extension for multi encoder in Symfony LDAP Auth  ",
+  "keywords": ["extension"],
+  "homepage": "https://www.wheregroup.com/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "David Patzke,
+      "email": "davidp.patzke@wheregroup.com"
+    },
+    {
+      "name": "Symfony Community",
+      "homepage": "https://symfony.com/contributors"
+    }
+  ],
+  "require": {
+    "php": "^7.1.3",
+    "symfony/symfony": "2.8.*"
+  },
+
+  "require-dev": {
+
+  }
+}
