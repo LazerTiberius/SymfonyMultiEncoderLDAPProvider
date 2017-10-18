@@ -1,5 +1,5 @@
 {
-  "name": "wheregroup/SymfonyMultiEncoderLDAPProvider",
+  "name": "wheregroup/symfonymultiencoderldapprovider",
   "type": "library",
   "description": "Extension for multi encoder in Symfony LDAP Auth  ",
   "keywords": ["extension"],
@@ -7,7 +7,7 @@
   "license": "MIT",
   "authors": [
     {
-      "name": "David Patzke,
+      "name": "David Patzke",
       "email": "davidp.patzke@wheregroup.com"
     },
     {
