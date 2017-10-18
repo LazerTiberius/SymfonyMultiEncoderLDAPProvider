@@ -5,6 +5,9 @@
   "keywords": ["extension"],
   "homepage": "https://www.wheregroup.com/",
   "license": "MIT",
+  "autoload": {
+    "psr-4": { "": "src/" }
+  },
   "authors": [
     {
       "name": "David Patzke",
