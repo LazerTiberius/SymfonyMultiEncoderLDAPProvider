@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * @author Andriy Oblivantsev <eslider@gmail.com>
+
  */
 
 namespace Wheregroup\Component;
@@ -10,11 +10,12 @@ use Symfony\Component\Security\Core\Encoder\EncoderAwareInterface;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
- * @property  username
- * @property string encoder
- * @property  password
+ * Class LdapUser
+ *
+ * @package Wheregroup\Component
+ * @author David Patzke <david.patzke@wheregroup.com>
  */
-class LdapUserMultiEncoder  implements AdvancedUserInterface, EncoderAwareInterface
+class LdapUser  implements AdvancedUserInterface, EncoderAwareInterface
 {
     private $username;
     private $password;
@@ -44,7 +45,8 @@ class LdapUserMultiEncoder  implements AdvancedUserInterface, EncoderAwareInterf
 
         preg_match_all('/(\{)(.*)(\})(.*)/', $password, $ldapPw  );
 
-        if (count($ldapPw) == 5) {
+        if (!empty($ldapPw[1])) {
+
             $this->password = $ldapPw[4][0];
             $this->pwEncoder  = $ldapPw[2][0];
         } else {
@@ -62,6 +64,9 @@ class LdapUserMultiEncoder  implements AdvancedUserInterface, EncoderAwareInterf
         $this->roles = $roles;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getUsername();
