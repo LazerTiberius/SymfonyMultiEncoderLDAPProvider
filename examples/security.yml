@@ -1,0 +1,93 @@
+services:
+    ldapClient:
+        class: Symfony\Component\Ldap\LdapClient
+        arguments:
+            - %ldap_host% #Address to LDAPServer
+            - %ldap_port% #Port where LDAPServer is listening
+            - %ldap_version% #LDAP Protocol version
+            - false           # SSL #Use SSL
+            - false        # TLS 'Use TLS
+
+    ext_ldap_user_provider:
+            class: Wheregroup\Component\LdapMultiEncoderUserProvider
+            arguments:
+                - @ldapClient
+                - %ldap_user_base_dn%
+                - %ldap_bind_dn%
+                - %ldap_bind_pwd%
+                - [ROLE_USER]
+                - %ldap_user_name_attribute%
+                - %ldap_user_query% #dn
+                - %ldap_group_dn%
+                - %ldap_group_query%
+                - %ldap_group_name_attribute%
+
+security:
+
+    encoders:
+      FOM\UserBundle\Entity\User: plaintext
+      plaintext:
+           algorithm: plaintext
+      SHA512:
+          algorithm: sha512
+          iterations: 1
+
+
+
+
+
+
+    providers:
+      ldapProvider:
+        id: ext_ldap_user_provider
+          # More options:
+          # http://symfony.com/doc/2.8/security/ldap.html
+
+          #filter: %ldap_user_search_filter%
+      main:
+        entity:
+          class: FOM\UserBundle\Entity\User
+          property: username
+      chain_provider:
+        chain:
+          providers: ["main", "ldapProvider"]
+
+
+
+
+
+
+    acl:
+        connection: default
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        login:
+            pattern:  ^/user/login$
+            security: false
+
+        secured_area:
+            pattern:    ^/
+            anonymous: ~
+            provider: chain_provider
+            form_login_ldap:
+
+                check_path: /user/login/check
+                login_path: /user/login
+                service:  ldapClient
+                dn_string: %dn_search%
+            form_login:
+              check_path: /user/login/check
+              login_path: /user/login
+            logout:
+                path:   /user/logout
+                target: /
+
+
+    access_control:
+        - { path: ^/user/login,    roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/manager,       roles: ROLE_USER }
+

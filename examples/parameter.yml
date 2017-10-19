@@ -1,0 +1,13 @@
+parameters:
+   # LDAP
+    ldap_host: 192.168.2.48 # Host of the LDAP Directory.
+    ldap_port: 389 # Port number (default: 389).
+    ldap_version: 3 # LDAP Version (default: 3)
+    ldap_bind_dn: cn=admin,dc=wheregroup,dc=com # User who connects to the LDAP (DN).
+    ldap_bind_pwd: root # His/Her password.
+    ldap_user_query: (&(cn={username})(objectclass=top))
+    ldap_user_base_dn: ou=user,dc=wheregroup,dc=com # Where to find users to authenticate with?
+    ldap_user_name_attribute: cn # Attribute that represents the typed in username in login-form
+    ldap_group_dn: ou=groups,dc=wheregroup,dc=com
+    ldap_group_query: member={uid_key_group}={username},ou=user,dc=wheregroup,dc=com
+    ldap_group_name_attribute: cn
