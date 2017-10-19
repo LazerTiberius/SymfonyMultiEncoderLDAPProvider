@@ -54,7 +54,7 @@ class LdapMultiEncoderUserProvider extends LdapUserProvider
         $this->defaultRoles      = $defaultRoles;
         $this->defaultSearch     = str_replace('{uid_key}', $uidKey, $filter);
         $this->groupBaseDN       = $groupBaseDN;
-        $this->groupSearchFilter = $groupSearchFilter;
+        $this->groupSearchFilter = str_replace('{uid_key_group}', $group_uid_key, $groupSearchFilter);
 
         $this->group_uid_key = $group_uid_key;
     }
