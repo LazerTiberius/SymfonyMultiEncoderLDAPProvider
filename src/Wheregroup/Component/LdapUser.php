@@ -4,7 +4,7 @@
  * @author Andriy Oblivantsev <eslider@gmail.com>
  */
 
-namespace Component;
+namespace Wheregroup\Component;
 
 use Symfony\Component\Security\Core\Encoder\EncoderAwareInterface;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
  * @property string encoder
  * @property  password
  */
-class LdapUser  implements AdvancedUserInterface, EncoderAwareInterface
+class LdapUserMultiEncoder  implements AdvancedUserInterface, EncoderAwareInterface
 {
     private $username;
     private $password;
