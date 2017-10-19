@@ -14,8 +14,8 @@
       "email": "davidp.patzke@wheregroup.com"
     },
     {
-      "name": "Symfony Community",
-      "homepage": "https://symfony.com/contributors"
+      "name": "Wheregroup",
+      "homepage": "https://www.wheregroup.com/"
     }
   ],
   "require": {
