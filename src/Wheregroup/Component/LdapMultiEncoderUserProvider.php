@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\LdapUserProvider;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Wheregroup\Component\LdapUser;
+
 
 /**
  * Class LdapMultiEncoderUserProvider
