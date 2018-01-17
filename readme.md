@@ -14,6 +14,7 @@ Um einen Verzeichnisdienst über LDAP im Mapbender einzubinden, müssen einige �
 
 Zuerst  müssen in der paramter.yml folgende Parameter eingetragen werden
 Alle Parameter befinden sich im ldap Namespace :
+
 | Parameter        | Beschreibung           | Default  |
 | ------------- |:-------------:| -----:|
 | host      | Hostname des Verzeichnisdienstes | - |
