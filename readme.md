@@ -19,16 +19,18 @@ Alle Parameter befinden sich im ldap Namespace :
 | ------------- |:-------------:| -----:|
 | host      | Hostname des Verzeichnisdienstes | - |
 | port    | Port des Verzeichnisdienstes     |   - |
-| useSSL    | Soll SSL Verschlüsselung bei derVerbindung genutzt werden      |   true |
-| useTLS    | Soll TLS Verschlüsselung bei derVerbindung genutzt werden      |   true |
-| bind.dn | Distinguished Name des Lesendennutzers      |    - |
-| bind.password| Passwort des Lesendennutzers     |    - |
+| useSSL    | Soll SSL Verschlüsselung bei der Verbindung genutzt werden      |   true |
+| useTLS    | Soll TLS Verschlüsselung bei der Verbindung genutzt werden      |   true |
+| bind.dn | Distinguished Name des lesenden Nutzers      |    - |
 | user.query |  Query, um nach Nutzern zu suchen |         - |
-| user.baseDn | Distinguished Name eines Nutzers    |    - |
-| user.nameAttribut| Attribut das den Gruppennamen enthält     |    - |
+| user.baseDn | Distinguished Name der Nutzer    |    - |
+| user.nameAttributte | Attribut das den Username enthält     |    - |
 | group.query |   Query, um nach Gruppen zu suchen      |  -  |
 | group.nameAttribute | Attribut das den Gruppennamen enthält     |    - |
 | group.filter | Filter, um Suche nach Gruppen einzuschränken.   |    - |
+| group.adminFilter | Filter, um Suche nach Gruppen einzuschränken.   |    - |
+| user.adminfilter | Filter, um Suche nach Usern im Adminbereich einzuschränken.   |    - |
+
 | `Tabelle 1. - Auflistung aller benötigten Parameter` |
 
 
@@ -82,7 +84,7 @@ Danach  muss noch der neu eingerichtete UserProvider registriert werden. Dafür 
     ldapProvider:
         id: mb.ldap.userProvider
 ```
-Zu letzt muss noch der ldap-login in den FireWall-Definitionen aktiviert werden. Hierzu muss in der Firewall-konfiguration der Block fom_login mit folgender Code ausgetauscht werden.
+Zuletzt muss noch der ldap-login in den FireWall-Definitionen aktiviert werden. Hierzu muss in der Firewall-Konfiguration der Block fom_login mit folgender Code ausgetauscht werden.
 
 ```
 
@@ -94,12 +96,12 @@ form_login_ldap:
                 dn_string: %dn_search%
 
 ```
-Wenn neben des LDAP-Logins noch zusätzlich, der standard Mapbender-Login basierend auf der fom_user Tabelle genutzt werden soll. Darf der Codeblock fom_login nicht ausgetuascht werden. Dann wird der Block  form_login_ldap zusätzlich hinzugefügt.
+Wenn neben des LDAP-Logins noch zusätzlich, der standard Mapbender-Login basierend auf der fom_user Tabelle genutzt werden soll. Darf der Codeblock fom_login nicht ausgetauscht werden. Dann wird der Block  form_login_ldap zusätzlich hinzugefügt.
 
 
 ## Nutzung von mehreren Password Encodern innerhalb eines Verzeichnisses 
 
-Falls innerhalb des Verzeichnisdienstes die Möglichkeit genutzt wird für unterschiedliche  Passwörter verschiednene Encoder zu nutzen, müssen diese in der `security.yml` konfiguriert werden. Jeder Encoder der genutzt werden soll, wird als benannter Encoder definiert.
+Falls innerhalb des Verzeichnisdienstes die Möglichkeit genutzt wird für unterschiedliche  Passwörter verschiedene Encoder zu nutzen, müssen diese in der `security.yml` konfiguriert werden. Jeder Encoder der genutzt werden soll, wird als benannter Encoder definiert.
 
 
 
