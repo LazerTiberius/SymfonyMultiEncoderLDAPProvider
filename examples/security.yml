@@ -2,9 +2,9 @@ services:
     ldapClient:
         class: Symfony\Component\Ldap\LdapClient
         arguments:
-            - %ldap_host% #Address to LDAPServer
-            - %ldap_port% #Port where LDAPServer is listening
-            - %ldap_version% #LDAP Protocol version
+            - %ldap.host% #Address to LDAPServer
+            - %ldap.port% #Port where LDAPServer is listening
+            - %ldap.version% #LDAP Protocol version
             - false           # SSL #Use SSL
             - false        # TLS 'Use TLS
 
@@ -12,20 +12,20 @@ services:
             class: Wheregroup\Component\LdapMultiEncoderUserProvider
             arguments:
                 - @ldapClient
-                - %ldap_user_base_dn%
-                - %ldap_bind_dn%
-                - %ldap_bind_pwd%
+                - %ldap.user.baseDn%
+                - %ldap.bind.dn%
+                - %ldap.bind.pwd%
                 - [ROLE_USER]
-                - %ldap_user_name_attribute%
-                - %ldap_user_query% #dn
-                - %ldap_group_dn%
-                - %ldap_group_query%
-                - %ldap_group_name_attribute%
+                - %ldap.user.nameAttribute%
+                - %ldap.user.query% #dn
+                - %ldap.group.baseDn%
+                - %ldap.group.query%
+                - %ldap.group.nameattribute%
 
 security:
 
     encoders:
-      FOM\UserBundle\Entity\User: plaintext
+      FOM\UserBundle\Entity\User: sha512
       plaintext:
            algorithm: plaintext
       SHA512:
@@ -50,7 +50,7 @@ security:
           property: username
       chain_provider:
         chain:
-          providers: ["main", "ldapProvider"]
+          providers: ["main","ldapProvider"]
 
 
 
@@ -78,7 +78,7 @@ security:
                 check_path: /user/login/check
                 login_path: /user/login
                 service:  ldapClient
-                dn_string: %dn_search%
+
             form_login:
               check_path: /user/login/check
               login_path: /user/login
@@ -90,4 +90,3 @@ security:
     access_control:
         - { path: ^/user/login,    roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/manager,       roles: ROLE_USER }
-

@@ -139,19 +139,21 @@ encoders:
 ## Beispiel Konfiguration der Parameter 
 ```
 
-    ldap.host: localhost # Host of the LDAP Directory.
-    ldap.port: 389 # Port number (default: 389).
-    ldap.version: 3 # LDAP Version (default: 3)
-    ldap.bind.dn: cn=admin,dc=wheregroup,dc=com # User who connects to the LDAP (DN).
-    ldap.bind.password: root # His/Her password.
-    ldap.user.query: (&(cn={username})(objectclass=top))
-    ldap.user.baseDn: ou=user,dc=wheregroup,dc=com # Where to find users to authenticate with?
-    ldap.user.nameAttribute: cn # Attribute that represents the typed in username in login-form
-    ldap.group.baseDn: ou=groups,dc=wheregroup,dc=com
-    ldap.group.query: member={uid_key_group}={username},ou=user,dc=wheregroup,dc=com
-    ldap.group.nameAttribute: cn
-    ldap.group.filter: (objectclass=top)
+# LDAP
 
+ldap.host: localhost
+ldap.port: 389
+ldap.version: 3 # LDAP Version (default: 3)
+ldap.user.baseDn: 'ou=user,dc=wheregroup,dc=com'
+ldap.user.nameAttribute: cn
+ldap.user.query: 'cn={username}'
+ldap.group.baseDn:  ou=groups,dc=exampleORG,dc=com
+ldap.group.query: member=cn={username},ou=user,dc=exampleORG,dc=com
+ldap.bind.dn: cn=admin ,dc=exampleORG,dc=com
+ldap.bind.pwd: root
+ldap.group.nameattribute: cn
+ldap.group.adminFilter: (objectclass=top)
+ldap.user.adminFilter: (objectclass=top)
 ```
 
 
